@@ -1,7 +1,15 @@
+"""The main script to solve the problem"""
+
+# import sys
+
 import numpy as np
 
 from chessboard import Board
 
+# sys.setrecursionlimit(sys.getrecursionlimit()+1500)
+
+# The Terms and Variables Definition use in the code
+#
 # boards:
 #   Recode the relation of symmetry board positions
 #
@@ -146,3 +154,4 @@ if __name__ == "__main__":
     board = Board()
     result = o_turns(board)
     print("O will win:", result)
+    print("finished!")

@@ -1,10 +1,16 @@
+"""A checss board class for Gobblet Gobblers
+
+Provide operations for the game
+"""
+
 from __future__ import annotations
 
 import numpy as np
 
+# 
 # [Position]
 # Layer 1     Layer 2     Layer 3
-# (biggest)
+# (Large)     (Medium)    (Small)
 # 0 | 1 | 2   9 | 10| 11  18| 19| 20
 # ---------   ---------   ---------
 # 3 | 4 | 5   12| 13| 14  21| 22| 23

@@ -2,7 +2,7 @@
 
 The objective is to determine whether the player who takes the first turn or the one who goes second is guaranteed to win or achieve a tie in the game, assuming both players make optimal moves at every step.
 
-## Introduction of the game
+## Introduction to the game
 
 * Name: Gobblet Gobblers (奇雞連連)
 
