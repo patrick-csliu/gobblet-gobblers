@@ -43,3 +43,5 @@ order by severity
 1. The number of possible "board positions" is on the order of magnitude of $10^9$.
 
     Approximation: $\frac{all possible in a layer^{three layer of gobbler}}{symmetry} = \frac{2117^3}{8} = 1.118 \times 10^9$
+
+1. If a hash collision occurs, will get the wrong result.
