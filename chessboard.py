@@ -5,9 +5,12 @@ Provide operations for the game
 
 from __future__ import annotations
 
-import numpy as np
+import time
 
-# 
+import numpy as np
+from IPython.display import clear_output
+
+#
 # [Position]
 # Layer 1     Layer 2     Layer 3
 # (Large)     (Medium)    (Small)
@@ -52,7 +55,7 @@ class Board:
         return self.board[key]
 
     def __repr__(self):
-        self._show_top_size()
+        return self._show_top_size()
 
     def _show_top(self) -> str:
         board_str = [[' ', ' ', ' '] for i in range(3)]
@@ -248,7 +251,7 @@ class Board:
         """
         if self.is_legal_put(pos, player):
             self.board[self.pos2ind(pos)] = player
-            self.chess[player-1][pos//9]
+            self.chess[player-1][pos//9] -= 1
             self.history.append((30, pos))
 
     def move(self, pre_pos: int, pos: int, player: int):
@@ -364,6 +367,54 @@ class Board:
                                 )
                             )
         return available
+
+
+class BoardHistory:
+    def __init__(self, board: Board):
+        self.board = board
+        self.history_len = len(board.history)
+
+    def goto(self, n: int):
+        if n < self.history_len:
+            pass
+        else:
+            return None
+        board = Board()
+        player = 1
+        for movement in self.board.history[:n+1]:
+            if movement[0] == 30:
+                board.put(movement[1], player)
+            else:
+                board.move(*movement, player)
+            player = -player + 3
+        return board
+
+    def show(self, n: int):
+        self.goto(n).show()
+
+    def play(self, n: int = 0):
+        board = self.goto(n)
+        while True:
+            # clear_output(wait=False)
+            # time.sleep(0.1)
+            print('n =', n)
+            print(board.history[-1])
+            print('next:', (n+1) % 2 + 1)
+            print('left:', board.chess)
+            board.show()
+            _input = input()
+            n += 1
+            if n > self.history_len - 1:
+                break
+            elif _input == 'q':
+                break
+            else:
+                movement = self.board.history[n]
+                player = n % 2 + 1
+                if movement[0] == 30:
+                    board.put(movement[1], player)
+                else:
+                    board.move(*movement, player)
 
 
 if __name__ == "__main__":
